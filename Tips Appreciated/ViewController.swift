@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, TipPercentDelegate {
+class ViewController: UIViewController, TipPercentDelegate{//, BackgroundColorDelegate {
     
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var totalLabel: UILabel!
@@ -19,6 +19,18 @@ class ViewController: UIViewController, TipPercentDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.billField.becomeFirstResponder()
+        
+        if let backColor = userDefaults.object(forKey: "backColor") as? String{
+            switch backColor{
+                case "yellow":
+                    self.view.backgroundColor = UIColor.yellow
+                case "gray":
+                    self.view.backgroundColor = UIColor.lightGray
+                case "green":
+                    self.view.backgroundColor = UIColor.green
+            default: break
+            }
+        }
         
         var defaultTipNo: Int? = userDefaults.object(forKey: "defaultTip") as! Int?
         if (defaultTipNo == nil){
@@ -49,6 +61,10 @@ class ViewController: UIViewController, TipPercentDelegate {
         tipControl.selectedSegmentIndex = Int(per)
         
     }
+    
+    /*func userDidSelectColor(){
+        view.backgroundColor = String()
+    }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let settings = segue.destination as? SettingsViewController{

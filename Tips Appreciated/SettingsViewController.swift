@@ -12,17 +12,55 @@ protocol TipPercentDelegate{
     func userDidSelectTip(per: Float)
 }
 
+/*protocol BackgroundColorDelegate{
+    func yellow()
+    func gray()
+    func green()
+}*/
 class SettingsViewController: UIViewController {
     
     
     @IBOutlet weak var defaultTipControl: UISegmentedControl! = UISegmentedControl()
     var delegate:TipPercentDelegate? = nil
+    //var bgDelegate:BackgroundColorDelegate? = nil
     let tipUserDefaults = UserDefaults.standard
+    let colorUserDefaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func yellow(_ sender: AnyObject) {
+        //if (bgDelegate != nil){
+            view.backgroundColor = UIColor.yellow
+            //bgDelegate!.userDidSelectColor()
+            colorUserDefaults.set("yellow", forKey: "backColor")
+            colorUserDefaults.synchronize()
+            _ = self.navigationController?.popViewController(animated: true)
+        // }
+    }
+    
+    @IBAction func gray(_ sender: AnyObject) {
+        //if (bgDelegate != nil){
+            view.backgroundColor = UIColor.lightGray
+           // bgDelegate!.userDidSelectColor()
+            colorUserDefaults.set("gray", forKey: "backColor")
+            colorUserDefaults.synchronize()
+            _ = self.navigationController?.popViewController(animated: true)
+       // }
+    }
+    
+    @IBAction func green(_ sender: AnyObject) {
+        //if (bgDelegate != nil){
+            view.backgroundColor = UIColor.green
+            //bgDelegate!.userDidSelectColor()
+            colorUserDefaults.set("green", forKey: "backColor")
+            colorUserDefaults.synchronize()
+            _ = self.navigationController?.popViewController(animated: true)
+
+        //}
     }
     
     @IBAction func setTip(_ sender: AnyObject) {
@@ -31,7 +69,7 @@ class SettingsViewController: UIViewController {
             delegate!.userDidSelectTip(per: percent)
             tipUserDefaults.set(defaultTipControl.selectedSegmentIndex, forKey: "defaultTip")
             tipUserDefaults.synchronize()
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
     }
     
