@@ -4,7 +4,7 @@
 
 Submitted by: **Pavithra Gunasekar**
 
-Time spent: **7** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
@@ -22,6 +22,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 * [x] App Icon
+* [x] Change background colors in the Settings page
 
 ## GIF 
 
